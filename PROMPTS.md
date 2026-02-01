@@ -63,7 +63,7 @@ Your character now:
 > Daha önce 3rd person camera kullanmadığım için fikir almak istedim.
 
 **Yapılan Değişiklikler (adapte ettiyseniz):**
- Tarif ettiği gibi yaptıktan sonra kamerayı hareket ettirmek için refleks olarak sol mouse tuşunu kullandığımı fark ettim, sol mouse button ile kontrol edilecek şekilde tekrar ayarladım.
+> Tarif ettiği gibi yaptıktan sonra kamerayı hareket ettirmek için refleks olarak sol mouse tuşunu kullandığımı fark ettim, sol mouse button ile kontrol edilecek şekilde tekrar ayarladım.
 
 
 
@@ -77,7 +77,7 @@ Your character now:
 > I made an animation transition in Unity. So if the character is walking it switches to a walking animation. But it doesnt cut the idle animation. I added a transition from idle to walking, is there any other way to do it so it can cut the idle animation and directly get into walking?
 
 **Alınan Cevap (Özet):**
-> 🔥 TL;DR (Do this first)
+🔥 TL;DR (Do this first)
 
 Select Idle → Walk transition
 
@@ -103,7 +103,7 @@ Drive it with Speed or isWalking
 **Tarih/Saat:** 2026-02-01 15.37
 
 **Prompt:**
-I have an interaction system in Unity and I also want to have a feedback mechanism for the player. So when the object is interactable/reachable, I want to show a text on the screen. Should I do it with a textbox in canvas just like 2d or should I use something else cause this project is 3d.
+> I have an interaction system in Unity and I also want to have a feedback mechanism for the player. So when the object is interactable/reachable, I want to show a text on the screen. Should I do it with a textbox in canvas just like 2d or should I use something else cause this project is 3d.
 
 **Alınan Cevap (Özet):**
 My recommendation: Start with a Screen Space Overlay canvas with a simple TextMeshPro element. It's cleaner, performs better, and is easier to manage. You can always upgrade to world space later if needed.
@@ -120,10 +120,10 @@ Use a raycast from the camera to detect what the player is looking at
 - [ ] Reddettim (kullanmadım)
 
 **Açıklama:**
-3D oyunlarda Canvas sisteminin farklı olabileceğini düşündüm. Daha sonra sıkıntı yaşamamak için sordum.
+> 3D oyunlarda Canvas sisteminin farklı olabileceğini düşündüm. Daha sonra sıkıntı yaşamamak için sordum.
 
 **Yapılan Değişiklikler (adapte ettiyseniz):**
-Interaction sistemini zaten kurmuştum, feedback'te yazanları da oradan değiştirdim.
+> Interaction sistemini zaten kurmuştum, feedback'te yazanları da oradan değiştirdim.
 
 
 
@@ -133,7 +133,7 @@ Interaction sistemini zaten kurmuştum, feedback'te yazanları da oradan değiş
 **Tarih/Saat:** 2026-02-01 17.23
 
 **Prompt:**
-I want to make a chest that opens when we hold E for 2 seconds. I also want to show the progress visually. How can i implement this?
+> I want to make a chest that opens when we hold E for 2 seconds. I also want to show the progress visually. How can i implement this?
 
 **Alınan Cevap (Özet):**
 Setting up the Progress Bar UI:
@@ -154,7 +154,7 @@ Assign both to a Chest script
 - [ ] Reddettim (kullanmadım)
 
 **Açıklama:**
-Önceki projelerde hep slider kullanmıştım ama bu projede dolan bir daire gibi yapmak istedim, tam istediğim şeyi bana verdi.
+> Önceki projelerde hep slider kullanmıştım ama bu projede dolan bir daire gibi yapmak istedim, tam istediğim şeyi bana verdi.
 
 
 
@@ -165,7 +165,7 @@ Assign both to a Chest script
 **Tarih/Saat:** 2026-02-01 17:51
 
 **Prompt:**
-The outline for my objects appear on my player, its not a good look so how can I fix it?
+> The outline for my objects appear on my player, its not a good look so how can I fix it?
 
 **Alınan Cevap (Özet):**
 The outline is appearing on the player because the raycast is hitting the player's collider. You have a check for this, but it seems it's not working properly. Here are a few solutions:
@@ -187,7 +187,7 @@ Update your raycast to only hit interactables:
 - [x] Reddettim (kullanmadım)
 
 **Açıklama:**
-Yeterince iyi tarif edememişim, anlamadı.
+> Yeterince iyi tarif edememişim, anlamadı.
 
 
 
@@ -198,7 +198,7 @@ Yeterince iyi tarif edememişim, anlamadı.
 **Tarih/Saat:** 2026-02-01 17:53
 
 **Prompt:**
-No I didnt mean that. The player has no outline, when I'm close to an interactable object, its outline appears (normally). But that objects outline is on our player even thousgh the object is behind us.
+> No I didnt mean that. The player has no outline, when I'm close to an interactable object, its outline appears (normally). But that objects outline is on our player even thousgh the object is behind us.
 
 **Alınan Cevap (Özet):**
 Ah, I understand now! The outline effect is rendering through/on top of the player even when the object is behind you. This is a common issue with outline shaders.
@@ -219,10 +219,10 @@ If you're using QuickOutline or similar:
 - [ ] Reddettim (kullanmadım)
 
 **Açıklama:**
-Sorunu anladım, dediği ayarlar benim Inspector'umda değil hazır kullandığım koddaydı. Onu değiştirdim.
+> Sorunu anladım, dediği ayarlar benim Inspector'umda değil hazır kullandığım koddaydı. Onu değiştirdim.
 
 **Yapılan Değişiklikler (adapte ettiyseniz):**
-Aşağıdaki kodu, outline koduna ekledim.
+> Aşağıdaki kodu, outline koduna ekledim.
 
 void Start()
 {
