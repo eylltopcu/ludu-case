@@ -82,22 +82,7 @@ Interactable Objects
 ---
 
 **Neden bu yapıyı seçtim:**
-> Bu yapıyı seçmemin temel sebebi merkezi ama genişletilebilir bir etkileşim sistemi kurmak istememdi.
-
-InteractionSystem, oyuncunun baktığı objeyi raycast ile algılar.
-
-Etkileşime girebilen objeler IInteractable arayüzünü uygular.
-
-
-Bu yaklaşım sayesinde:
-
-Door, Chest, LightSwitch gibi objeler birbirinden bağımsızdır
-
-Yeni bir interactable eklemek için InteractionSystem’i değiştirmem gerekmez
-
-UI, input ve outline kontrolü tek bir yerde toplanır
-
-Bu da sistemi okunabilir, test edilebilir ve sürdürülebilir hale getirir.
+> Bu yapıyı seçmemin temel sebebi merkezi ama genişletilebilir bir etkileşim sistemi kurmak istememdi. InteractionSystem, oyuncunun baktığı objeyi raycast ile algılar. Etkileşime girebilen objeler IInteractable arayüzünü uygular. Bu yaklaşım sayesinde: Door, Chest, LightSwitch gibi objeler birbirinden bağımsızdır. Yeni bir interactable eklemek için InteractionSystem’i değiştirmem gerekmez. UI, input ve outline kontrolü tek bir yerde toplanır. Bu da sistemi okunabilir, test edilebilir ve sürdürülebilir hale getirir.
 
 
 **Alternatifler:**
@@ -171,7 +156,7 @@ Dezavantajlar
 | Hierarchy yapısı | [x] / [ ] | |
 
 ### Zorlandığım Noktalar
-> - InteractionSystem ile IInteractable arasındaki sorumluluk dengesini kurmak
+- InteractionSystem ile IInteractable arasındaki sorumluluk dengesini kurmak
 
 - Hold interaction sırasında UI ve input senkronizasyonu
 
@@ -282,7 +267,8 @@ Assets/
 
 ## İletişim
 
-
+| Alan | Değer |
+|-----|---------|
 | Ad Soyad | Eylül Topçu |
 | E-posta | topcueyll@gmail.com |
 | LinkedIn | https://www.linkedin.com/in/eyll-topcu/ |
