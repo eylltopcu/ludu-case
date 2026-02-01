@@ -19,10 +19,11 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
+void OnMove(InputValue value)
+{
+    moveInput = value.Get<Vector2>();
+    Debug.Log("Move input: " + moveInput);
+}
 
     void Update()
     {

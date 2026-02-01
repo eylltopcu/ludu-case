@@ -9,7 +9,13 @@ public class KeyPickup : MonoBehaviour
 
     bool playerInRange = false;
     SimpleInventory playerInventory;
+        void Start()
+    {
 
+        Outline outline = GetComponent<Outline>();
+        if (outline != null)
+            outline.enabled = false;
+    }
     void OnTriggerEnter(Collider other)
     {
         SimpleInventory inv = other.GetComponentInParent<SimpleInventory>();
@@ -30,7 +36,7 @@ public class KeyPickup : MonoBehaviour
         playerInRange = false;
         playerInventory = null;
 
-        feedbackText.enabled = false;
+        feedbackText.text = " ";
     }
 
     void Update()
@@ -42,7 +48,6 @@ public class KeyPickup : MonoBehaviour
         {
             playerInventory.hasKey = true;
             Debug.Log("Key alındı!");
-            feedbackText.enabled = false;
             Destroy(gameObject);
             playerInventory.hasKey = true;
         }

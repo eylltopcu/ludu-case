@@ -85,7 +85,7 @@ void Start()
     if (outline != null)
     {
         outline.enabled = false;
-        outline.OutlineMode = Outline.Mode.OutlineVisible; // Set the mode
+        outline.OutlineMode = Outline.Mode.OutlineVisible; 
     }
 }
   void Awake() {

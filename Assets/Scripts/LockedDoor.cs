@@ -7,6 +7,7 @@ public class LockedDoor : MonoBehaviour, IInteractable
     public bool isOpen = false;
 
     public bool isLocked = true;   // 🔒 NEW
+    public TMPro.TextMeshProUGUI feedbackText;
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -35,8 +36,9 @@ public class LockedDoor : MonoBehaviour, IInteractable
             Debug.Log("Door is locked! You need a key.");
             return;
         }
-
+        feedbackText.text = "Press E to interact with Door";
         isOpen = !isOpen;
+
         Debug.Log(isOpen ? "Door opening!" : "Door closing!");
     }
 
