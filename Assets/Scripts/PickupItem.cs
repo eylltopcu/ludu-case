@@ -2,22 +2,41 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
-
 public class KeyPickup : MonoBehaviour
 {
     public TextMeshProUGUI feedbackText;
     public GameObject InventoryUI;
+    
+    // Sound effect
+    public AudioClip pickupSound;
+    private AudioSource audioSource;
 
     bool playerInRange = false;
     SimpleInventory playerInventory;
-        void Start()
+    
+    void Start()
     {
-
         Outline outline = GetComponent<Outline>();
         if (outline != null)
+        {
             outline.enabled = false;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+        
         InventoryUI.SetActive(false);
+        
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // 3D sound
+        audioSource.maxDistance = 15f;
     }
+    
     void OnTriggerEnter(Collider other)
     {
         SimpleInventory inv = other.GetComponentInParent<SimpleInventory>();
@@ -46,17 +65,21 @@ public class KeyPickup : MonoBehaviour
         if (!playerInRange) return;
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-
         {
             playerInventory.hasKey = true;
-            Debug.Log("Key alındı!");
-            Destroy(gameObject);
+            Debug.Log("Key picked up!");
+            
+            // Play pickup sound
+            if (pickupSound != null)
+            {
+                // Play sound at the key's position before destroying it
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            }
+            
             feedbackText.text = "Key collected!";
-            playerInventory.hasKey = true;
-        }
-        if (playerInventory.hasKey==true)
-        {
-              InventoryUI.SetActive(true);
+            InventoryUI.SetActive(true);
+            
+            Destroy(gameObject);
         }
     }
 }
