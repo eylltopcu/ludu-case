@@ -2,14 +2,14 @@
 
 | Bilgi | Değer |
 |-------|-------|
-| Toplam prompt sayısı | 5 |
+| Toplam prompt sayısı | 6 |
 | Kullanılan araçlar | ChatGPT / Claude |
 | En çok yardım alınan konular | UI/Outline Problemleri |
 | Tahmini LLM ile kazanılan süre | 2 saat |
  
 
 
-Prompt 1: 3rd Person Camera
+## Prompt 1: 3rd Person Camera
 
 **Araç:** ChatGPT-4
 **Tarih/Saat:** 2026-02-01 13:11 
@@ -18,10 +18,9 @@ Prompt 1: 3rd Person Camera
 >hello, I'm making a 3d game and I want it to be third person. How can I arrange the camera? I also want so see the movements of my character and move the camera with holding right click and dragging. How should I do it?
 
 **Alınan Cevap (Özet):**
->Heyy ✨ third-person cameras are *way* easier than they look once you break them down. Let’s do this clean and game-dev-friendly.
+Heyy ✨ third-person cameras are *way* easier than they look once you break them down. Let’s do this clean and game-dev-friendly.
 
-
-## 🎮 What you want (in plain terms)
+🎮 What you want (in plain terms)
 
 * Camera stays **behind / around the character**
 * Character movement is **visible at all times**
@@ -32,7 +31,7 @@ This is basically a **pivot-based third person camera** (used in Zelda, Genshin,
 
 ---
 
-## 🧠 Camera Logic (important idea)
+🧠 Camera Logic (important idea)
 
 Instead of rotating the camera directly:
 
@@ -45,14 +44,6 @@ Player
  └── CameraPivot (rotates)
       └── Camera (offset back)
 ```
-
-This makes rotation clean and controllable 👍
-
-Your character now:
-
-* Moves where the camera is facing
-* Always stays in view
-
 
 **Nasıl Kullandım:**
 - [ ] Direkt kullandım
@@ -68,7 +59,7 @@ Your character now:
 
 
 
- Prompt 2: Animation Error
+## Prompt 2: Animation Error
 
 **Araç:** ChatGPT-4
 **Tarih/Saat:** 2026-02-01 13:38
@@ -100,7 +91,7 @@ Drive it with Speed or isWalking
 ## Prompt 3: UI Feedback in 3D
 
 **Araç:** Claude 
-**Tarih/Saat:** 2026-02-01 15.37
+**Tarih/Saat:** 2026-02-01 15:37
 
 **Prompt:**
 > I have an interaction system in Unity and I also want to have a feedback mechanism for the player. So when the object is interactable/reachable, I want to show a text on the screen. Should I do it with a textbox in canvas just like 2d or should I use something else cause this project is 3d.
@@ -130,7 +121,7 @@ Use a raycast from the camera to detect what the player is looking at
 ## Prompt 4: Chest Interaction
 
 **Araç:** Claude
-**Tarih/Saat:** 2026-02-01 17.23
+**Tarih/Saat:** 2026-02-01 17:23
 
 **Prompt:**
 > I want to make a chest that opens when we hold E for 2 seconds. I also want to show the progress visually. How can i implement this?
@@ -192,7 +183,7 @@ Update your raycast to only hit interactables:
 
 
 
-## Prompt 5: Outline Fix 2
+## Prompt 6: Outline Fix 2
 
 **Araç:** Claude
 **Tarih/Saat:** 2026-02-01 17:53
