@@ -34,6 +34,6 @@ public class Switch : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        throw new System.NotImplementedException();
+        return true; 
     }
 }

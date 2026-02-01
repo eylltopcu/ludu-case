@@ -40,16 +40,21 @@ public class LockedDoor : MonoBehaviour, IInteractable
         Debug.Log(isOpen ? "Door opening!" : "Door closing!");
     }
 
-    public bool CanInteract()
-    {
-        // if door is locked, check key
-        if (isLocked)
-        {   
-            Debug.Log("Checking for key in inventory..."+playerInventory.hasKey);
-            return playerInventory != null && playerInventory.hasKey;
+public bool CanInteract()
+{
+    // if door is locked, check key
+    if (isLocked)
+    {   
+        if (playerInventory == null)
+        {
+            Debug.LogWarning("Player inventory not found!");
+            return false;
         }
-        return true;
+        Debug.Log("Checking for key in inventory..." + playerInventory.hasKey);
+        return playerInventory.hasKey;
     }
+    return true;
+}
 
     void Update()
     {

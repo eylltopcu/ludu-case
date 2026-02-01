@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InteractionSystem : MonoBehaviour
 {
-    public Transform cameraPivot; // Use the PIVOT, not the camera itself
+    public Transform cameraPivot;
     public float interactionRange = 10f;
     public LayerMask interactableLayer;
     public GameObject Door;
@@ -12,15 +13,26 @@ public class InteractionSystem : MonoBehaviour
     public GameObject LockedDoor;
     public GameObject Chest;
     public TMPro.TextMeshProUGUI feedbackText;
-    public bool haskey = false;
-
+    
+    // Hold interaction UI
+    public Image holdProgressBar; // Assign a UI Image with Image Type = Filled
+    public GameObject holdProgressUI; // Parent GameObject containing the progress bar
     
     private GameObject currentLookTarget;
     private Outline currentOutline;
+    private bool isHolding = false;
+    private float holdTimer = 0f;
+    private float requiredHoldTime = 2f;
+    private Chest currentChest;
+
+    void Start()
+    {
+        if (holdProgressUI != null)
+            holdProgressUI.SetActive(false);
+    }
 
     void Update()
     {
-        // Shoot ray from camera pivot's position in its forward direction
         Ray ray = new Ray(cameraPivot.position, cameraPivot.forward);
         RaycastHit hit;
 
@@ -28,15 +40,14 @@ public class InteractionSystem : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactionRange))
         {
-            if (hit.collider.gameObject == this.gameObject) return; // Skip player
-            
-            Debug.Log("HIT: " + hit.collider.gameObject.name);
+            if (hit.collider.gameObject == this.gameObject) return;
             
             GameObject hitObject = hit.collider.gameObject;
 
             if (hitObject != currentLookTarget)
             {
                 ClearOutline();
+                ResetHold();
                 
                 currentLookTarget = hitObject;
                 currentOutline = hitObject.GetComponent<Outline>();
@@ -44,7 +55,6 @@ public class InteractionSystem : MonoBehaviour
                 if (currentOutline != null)
                 {
                     currentOutline.enabled = true;
-                    Debug.Log("Outline enabled!");
                     
                     if (GameObject.ReferenceEquals(hitObject, Door))
                     {
@@ -61,29 +71,80 @@ public class InteractionSystem : MonoBehaviour
                     else if (GameObject.ReferenceEquals(hitObject, LockedDoor))
                     {
                         feedbackText.text = "This door is locked! Find the key.";
-                        if (haskey)
-                        {
-                            feedbackText.text = "Press E to unlock and open the door";
-                        }
                     }
                     else if (GameObject.ReferenceEquals(hitObject, Chest))
                     {
-                        feedbackText.text = "Hold E to open Chest";
+                        currentChest = hitObject.GetComponent<Chest>();
+                        if (currentChest != null && currentChest.CanInteract())
+                        {
+                            feedbackText.text = "Hold E to open Chest";
+                        }
+                        else
+                        {
+                            feedbackText.text = "Chest is already open";
+                        }
                     }
                 }
             }
 
-            if (Keyboard.current.eKey.wasPressedThisFrame)
+            // Handle Chest hold interaction
+            if (GameObject.ReferenceEquals(hitObject, Chest) && currentChest != null && currentChest.CanInteract())
+            {
+                if (Keyboard.current.eKey.isPressed)
+                {
+                    if (!isHolding)
+                    {
+                        isHolding = true;
+                        holdTimer = 0f;
+                        if (holdProgressUI != null)
+                            holdProgressUI.SetActive(true);
+                    }
+
+                    holdTimer += Time.deltaTime;
+                    
+                    // Update progress bar
+                    if (holdProgressBar != null)
+                    {
+                        holdProgressBar.fillAmount = holdTimer / requiredHoldTime;
+                    }
+
+                    if (holdTimer >= requiredHoldTime)
+                    {
+                        currentChest.OnHoldComplete();
+                        ResetHold();
+                    }
+                }
+                else if (isHolding)
+                {
+                    ResetHold();
+                }
+            }
+            // Handle regular interactions
+            else if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 IInteractable interactable = hitObject.GetComponent<IInteractable>();
-                if (interactable != null)
+                if (interactable != null && interactable.CanInteract())
+                {
                     interactable.Interact();
+                }
             }
         }
         else
         {
             ClearOutline();
+            ResetHold();
         }
+    }
+
+    void ResetHold()
+    {
+        isHolding = false;
+        holdTimer = 0f;
+        if (holdProgressUI != null)
+            holdProgressUI.SetActive(false);
+        if (holdProgressBar != null)
+            holdProgressBar.fillAmount = 0f;
+        currentChest = null;
     }
 
     void ClearOutline()
