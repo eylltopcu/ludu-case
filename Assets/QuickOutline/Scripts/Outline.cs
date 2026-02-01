@@ -79,7 +79,15 @@ public class Outline : MonoBehaviour {
   private Material outlineFillMaterial;
 
   private bool needsUpdate;
-
+void Start()
+{
+    Outline outline = GetComponent<Outline>();
+    if (outline != null)
+    {
+        outline.enabled = false;
+        outline.OutlineMode = Outline.Mode.OutlineVisible; // Set the mode
+    }
+}
   void Awake() {
 
     // Cache renderers
