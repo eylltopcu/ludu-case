@@ -13,10 +13,11 @@ public class InteractionSystem : MonoBehaviour
     public GameObject LockedDoor;
     public GameObject Chest;
     public TMPro.TextMeshProUGUI feedbackText;
+    public GameObject InventoryUI;
     
     // Hold interaction UI
-    public Image holdProgressBar; // Assign a UI Image with Image Type = Filled
-    public GameObject holdProgressUI; // Parent GameObject containing the progress bar
+    public Image holdProgressBar;
+    public GameObject holdProgressUI;
     
     private GameObject currentLookTarget;
     private Outline currentOutline;
@@ -24,11 +25,19 @@ public class InteractionSystem : MonoBehaviour
     private float holdTimer = 0f;
     private float requiredHoldTime = 2f;
     private Chest currentChest;
+    private SimpleInventory playerInventory;
 
     void Start()
     {
         if (holdProgressUI != null)
             holdProgressUI.SetActive(false);
+            
+        // Get player inventory reference
+        playerInventory = GetComponent<SimpleInventory>();
+        if (playerInventory == null)
+        {
+            Debug.LogError("SimpleInventory component not found on player!");
+        }
     }
 
     void Update()
@@ -70,7 +79,23 @@ public class InteractionSystem : MonoBehaviour
                     }
                     else if (GameObject.ReferenceEquals(hitObject, LockedDoor))
                     {
-                        feedbackText.text = "This door is locked! Find the key.";
+                        LockedDoor lockedDoorComponent = hitObject.GetComponent<LockedDoor>();
+                        
+                        if (lockedDoorComponent != null && lockedDoorComponent.isLocked)
+                        {
+                            if (playerInventory != null && playerInventory.hasKey)
+                            {
+                                feedbackText.text = "Press E to unlock the door";
+                            }
+                            else
+                            {
+                                feedbackText.text = "The door is locked. Find the key!";
+                            }
+                        }
+                        else
+                        {
+                            feedbackText.text = "Press E to interact with Door";
+                        }
                     }
                     else if (GameObject.ReferenceEquals(hitObject, Chest))
                     {
@@ -102,7 +127,6 @@ public class InteractionSystem : MonoBehaviour
 
                     holdTimer += Time.deltaTime;
                     
-                    // Update progress bar
                     if (holdProgressBar != null)
                     {
                         holdProgressBar.fillAmount = holdTimer / requiredHoldTime;

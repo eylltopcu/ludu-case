@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class KeyPickup : MonoBehaviour
 {
     public TextMeshProUGUI feedbackText;
+    public GameObject InventoryUI;
 
     bool playerInRange = false;
     SimpleInventory playerInventory;
@@ -15,6 +16,7 @@ public class KeyPickup : MonoBehaviour
         Outline outline = GetComponent<Outline>();
         if (outline != null)
             outline.enabled = false;
+        InventoryUI.SetActive(false);
     }
     void OnTriggerEnter(Collider other)
     {
@@ -49,7 +51,12 @@ public class KeyPickup : MonoBehaviour
             playerInventory.hasKey = true;
             Debug.Log("Key alındı!");
             Destroy(gameObject);
+            feedbackText.text = "Key collected!";
             playerInventory.hasKey = true;
+        }
+        if (playerInventory.hasKey==true)
+        {
+              InventoryUI.SetActive(true);
         }
     }
 }
