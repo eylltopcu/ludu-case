@@ -147,7 +147,7 @@ Create a parent GameObject to hold this (call it "HoldProgressUI") so you can sh
 Assign both to a Chest script
 
 **Nasıl Kullandım:**
-- [x]Direkt kullandım (değişiklik yapmadan)
+- [x] Direkt kullandım (değişiklik yapmadan)
 - [ ] Adapte ettim (değişiklikler yaparak)
 - [ ] Reddettim (kullanmadım)
 
