@@ -19,17 +19,13 @@
 
 **Alınan Cevap (Özet):**
 Heyy ✨ third-person cameras are *way* easier than they look once you break them down. Let’s do this clean and game-dev-friendly.
-
 🎮 What you want (in plain terms)
-
 * Camera stays **behind / around the character**
 * Character movement is **visible at all times**
 * **Hold Right Mouse Button (RMB)** → rotate camera by dragging
 * Camera smoothly follows the player
 
 This is basically a **pivot-based third person camera** (used in Zelda, Genshin, Souls-like, etc.).
-
----
 
 🧠 Camera Logic (important idea)
 
@@ -59,6 +55,9 @@ Player
 
 
 
+
+
+
 ## Prompt 2: Animation Error
 
 **Araç:** ChatGPT-4
@@ -68,6 +67,7 @@ Player
 > I made an animation transition in Unity. So if the character is walking it switches to a walking animation. But it doesnt cut the idle animation. I added a transition from idle to walking, is there any other way to do it so it can cut the idle animation and directly get into walking?
 
 **Alınan Cevap (Özet):**
+
 🔥 TL;DR (Do this first)
 
 Select Idle → Walk transition
@@ -85,6 +85,9 @@ Drive it with Speed or isWalking
 
 **Açıklama:**
 > Oyunu test ederken animasyon geçişinin bazen çalıştığını, bazen çalışmadığını fark ettim. Geçişleri "isWalking" booluyla ayarlamıştım tekrar tekrar kontrol ettim, sorunu kendim bulamayınca sordum. Exit Time'ı kapatmayı unutmuşum :)
+
+
+
 
 
 
@@ -118,6 +121,10 @@ Use a raycast from the camera to detect what the player is looking at
 
 
 
+
+
+
+
 ## Prompt 4: Chest Interaction
 
 **Araç:** Claude
@@ -146,6 +153,9 @@ Assign both to a Chest script
 
 **Açıklama:**
 > Önceki projelerde hep slider kullanmıştım ama bu projede dolan bir daire gibi yapmak istedim, tam istediğim şeyi bana verdi.
+
+
+
 
 
 
@@ -183,6 +193,9 @@ Update your raycast to only hit interactables:
 
 
 
+
+
+
 ## Prompt 6: Outline Fix 2
 
 **Araç:** Claude
@@ -215,12 +228,21 @@ If you're using QuickOutline or similar:
 **Yapılan Değişiklikler (adapte ettiyseniz):**
 > Aşağıdaki kodu, outline koduna ekledim.
 
-void Start()
-{
-    Outline outline = GetComponent<Outline>();
-    if (outline != null)
-    {
-        outline.enabled = false;
-        outline.OutlineMode = Outline.Mode.OutlineVisible;
-    }
-}
+
+	
+	void Start()
+	
+	{
+	
+		Outline outline = GetComponent<Outline>();
+	    
+		if (outline != null)
+	    
+		{
+	    
+			outline.enabled = false;
+	        
+			outline.OutlineMode = Outline.Mode.OutlineVisible;
+	    }}
+
+
