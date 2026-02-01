@@ -63,20 +63,28 @@ git clone https://github.com/eylltopcu/ludu-case.git
 
 ### Interaction System Yapısı
 ```
-Main
-├── InteractionSystem
-│   ├── Raycast (cameraPivot → forward)
-│   ├── IInteractable kontrolü
-│   ├── UI Feedback (Text + Hold Progress)
-│   ├── Outline yönetimi
-│   └── Input System (Tap / Hold)
+main
+├─ CameraPivot
+│  └─ Main Camera
+├─ Directional Light
+├─ P_Player
+├─ Environment
+│  ├─ Music_Background
+│  ├─ Floors
+│  ├─ Walls
+│  └─ Objects
+├─ Interactables
+│  ├─ P_LightSwitch
+│  ├─ P_LockedDoor
+│  ├─ P_Door
+│  ├─ P_Chest
+│  └─ P_Key
+├─ Canvas
+│  ├─ UI_TextFeedback
+│  ├─ UI_HoldProgress
+│  └─ UI_Inventory_Background
+└─ EventSystem
 
-Interactable Objects
- ├── Door
- ├── LockedDoor
- ├── Chest
- ├── Key
- └── LightSwitch
 ```
 
 ---
@@ -198,7 +206,7 @@ Dezavantajlar
 
 - [x] Animation entegrasyonu
 - [x] Sound effects
-- [x] Multiple keys / color-coded
+- [ ] Multiple keys / color-coded
 - [x] Interaction highlight
 - [x] Save/Load states
 - [x] Chained interactions
@@ -234,33 +242,38 @@ Zorunlu gereksinimlerin dışında eklediklerim:
 ## Dosya Yapısı
 
 ```
-Assets/
-├── [ProjectName]/
-│   ├── Scripts/
-│   │   ├── Runtime/
-│   │   │   ├── Core/
-│   │   │   │   ├── IInteractable.cs
-│   │   │   │   └── ...
-│   │   │   ├── Interactables/
-│   │   │   │   ├── Door.cs
-│   │   │   │   └── ...
-│   │   │   ├── Player/
-│   │   │   │   └── ...
-│   │   │   └── UI/
-│   │   │       └── ...
-│   │   └── Editor/
-│   ├── ScriptableObjects/
-│   ├── Prefabs/
-│   ├── Materials/
-│   └── Scenes/
-│       └── TestScene.unity
-├── Docs/
+ludu-case
+├─ .vscode
+├─ Assets
+│  ├─ Animations
+│  ├─ Assets
+│  │  ├─ Cartoony Fantasy Lowpoly
+│  │  ├─ DenysAlmaral
+│  │  ├─ Environment
+│  │  ├─ Images
+│  │  └─ Objects
+│  ├─ Audios
+│  ├─ Materials
+│  ├─ QuickOutline
+│  ├─ Scenes
+│  │  └─ main.unity
+│  ├─ Scripts
+│  ├─ Settings
+│  ├─ TextMesh Pro
+│  ├─ Textures
+│  └─ TutorialInfo
+├─ Packages
+├─ ProjectSettings
+├─ .gitignore
+├─ Ludu Case.slnx
+├─ ludu-case.slnx
+├─ Docs
 │   ├── CSharp_Coding_Conventions.md
 │   ├── Naming_Convention_Kilavuzu.md
 │   └── Prefab_Asset_Kurallari.md
-├── README.md
-├── PROMPTS.md
-└── .gitignore
+├─ PROMPTS.md
+└─ README.md
+
 ```
 
 ---
