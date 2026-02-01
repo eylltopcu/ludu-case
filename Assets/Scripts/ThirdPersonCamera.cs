@@ -9,13 +9,13 @@ public class ThirdPersonCamera : MonoBehaviour
     float yaw;
     float pitch;
 
-    void LateUpdate()
+void LateUpdate()
     {
         // Follow player
         transform.position = target.position;
 
-        // Right mouse button held
-        if (Mouse.current.rightButton.isPressed)
+        // Left mouse button held
+        if (Mouse.current.leftButton.isPressed)
         {
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 

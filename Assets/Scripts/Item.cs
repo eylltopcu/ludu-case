@@ -1,16 +1,13 @@
 using UnityEngine;
-
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public bool CanInteract()
     {
-        
+        return true; // burada şart koyabilirsin
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
+        Debug.Log("Item alındı");
     }
 }
