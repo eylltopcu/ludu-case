@@ -113,7 +113,7 @@ public class InteractionSystem : MonoBehaviour
             }
 
             // Handle Chest hold interaction
-            if (GameObject.ReferenceEquals(hitObject, Chest) && currentChest != null && currentChest.CanInteract())
+            if (currentChest != null && currentChest.CanInteract())
             {
                 if (Keyboard.current.eKey.isPressed)
                 {
@@ -140,9 +140,9 @@ public class InteractionSystem : MonoBehaviour
                 }
                 else if (isHolding)
                 {
-                    ResetHold();
-                }
-            }
+                    // Only reset the hold timer, not the chest reference
+                    ResetHoldTimer();
+                }}
             // Handle regular interactions
             else if (Keyboard.current.eKey.wasPressedThisFrame)
             {
@@ -159,7 +159,16 @@ public class InteractionSystem : MonoBehaviour
             ResetHold();
         }
     }
-
+    void ResetHoldTimer()
+{
+    isHolding = false;
+    holdTimer = 0f;
+    if (holdProgressUI != null)
+        holdProgressUI.SetActive(false);
+    if (holdProgressBar != null)
+        holdProgressBar.fillAmount = 0f;
+    // DON'T set currentChest to null here
+}
     void ResetHold()
     {
         isHolding = false;

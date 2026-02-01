@@ -7,6 +7,11 @@ public class Chest : MonoBehaviour, IInteractable
     public float openAngle = 90f;
     public float openSpeed = 2f;
     
+    // Sound effects
+    public AudioClip openSound;
+    public AudioClip creakSound; // Optional creaking sound while holding
+    private AudioSource audioSource;
+    
     private bool isOpen = false;
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -21,7 +26,21 @@ public class Chest : MonoBehaviour, IInteractable
 
         Outline outline = GetComponent<Outline>();
         if (outline != null)
+        {
             outline.enabled = false;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+        
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f;
+        audioSource.maxDistance = 15f;
     }
 
     public void Interact()
@@ -38,6 +57,13 @@ public class Chest : MonoBehaviour, IInteractable
     public void OnHoldComplete()
     {
         isOpen = true;
+        
+        // Play open sound
+        if (audioSource != null && openSound != null)
+        {
+            audioSource.PlayOneShot(openSound);
+        }
+        
         Debug.Log("Chest opened!");
     }
 
