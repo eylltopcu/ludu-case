@@ -265,7 +265,6 @@ ludu-case
 ├─ Packages
 ├─ ProjectSettings
 ├─ .gitignore
-├─ Ludu Case.slnx
 ├─ ludu-case.slnx
 ├─ Docs
 │   ├── CSharp_Coding_Conventions.md
