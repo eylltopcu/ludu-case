@@ -13,6 +13,7 @@ public class LockedDoor : MonoBehaviour, IInteractable
     public AudioClip unlockSound;
     public AudioClip lockedSound; // Sound when trying to open locked door
     private AudioSource audioSource;
+    public GameObject inventoryUI;
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -71,11 +72,12 @@ public class LockedDoor : MonoBehaviour, IInteractable
                 if (audioSource != null && unlockSound != null)
                 {
                     audioSource.PlayOneShot(unlockSound);
+                    inventoryUI.SetActive(false);
                 }
                 
                 Debug.Log("Door unlocked!");
                 
-                GameObject inventoryUI = GameObject.Find("InventoryUI");
+
                 if (inventoryUI != null)
                     inventoryUI.SetActive(false);
                 

@@ -3602,6 +3602,8 @@ MonoBehaviour:
   openAngle: -90
   openSpeed: 2
   isOpen: 0
+  openSound: {fileID: 8300000, guid: 1ccac03752e5ba64eb228cff252dc0a5, type: 3}
+  closeSound: {fileID: 8300000, guid: 3b796cd4da85ee246a7ae119f4ec3a78, type: 3}
 --- !u!1001 &1560615620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5211,6 +5213,10 @@ MonoBehaviour:
   openSpeed: 2
   isOpen: 0
   isLocked: 1
+  openSound: {fileID: 8300000, guid: 1ccac03752e5ba64eb228cff252dc0a5, type: 3}
+  closeSound: {fileID: 8300000, guid: 3b796cd4da85ee246a7ae119f4ec3a78, type: 3}
+  unlockSound: {fileID: 8300000, guid: 6279480a7003f2342b9c5733d94c03f6, type: 3}
+  lockedSound: {fileID: 0}
   inventoryUI: {fileID: 1280664000}
 --- !u!1001 &1953963049
 PrefabInstance:
